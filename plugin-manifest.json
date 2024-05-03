@@ -1,0 +1,108 @@
+{
+  "locale": [
+    "en"
+  ],
+  "service": "DESK",
+  "storage": false,
+  "type": "personal",
+  "whiteListedDomains": ["https://webhook.site","https://desk.zoho.eu","https://datevconnect.riecken-webservices.at","https://www.zohoapis.eu","https://www.zohoapis.eu/crm/v2/functions/testemail","https://www.zohoapis.eu/crm/v2/functions/testemail/actions/execute"],
+  "modules": {
+    "widgets": [
+      {
+        "location": "desk.ticket.detail.moreaction",
+        "url": "/app/widget.html",
+        "name": "DMS File Attachment",
+        "logo": "/app/img/datev.png",
+        "icon": "/app/img/datev.png"
+      }
+    ]
+  },
+  "cspDomains": {
+    "connect-src": []
+  },
+  
+  "zohoAuthorisation": {"type": "connectors",
+    "connectionLinkName": "zohodesktask",
+    "connectionName": "ZohoDeskTask",
+    "serviceName": "zlabs_integration",
+    "userAccess": false,
+    "isUserDefinedService": false,
+    "sharedBy": "20097803016",
+    "scope": [
+      "Desk.tickets.ALL",
+      "Desk.tickets.READ",
+      "Desk.tickets.UPDATE",
+      "Desk.tickets.CREATE",
+      "Desk.contacts.READ",
+      "Desk.settings.READ",
+      "Desk.search.READ",
+      "Desk.tickets.WRITE",
+      "Desk.tickets.DELETE",
+      "Desk.tasks.READ",
+      "Desk.activities.calls.READ",
+      "Desk.activities.events.READ",
+      "Desk.activities.READ",
+      "Desk.activities.tasks.READ",
+      "Desk.articles.READ",
+      "Desk.activities.calls.UPDATE",
+      "Desk.activities.UPDATE",
+      "Desk.activities.events.CREATE",
+      "Desk.activities.CREATE",
+      "Desk.activities.events.UPDATE",
+      "Desk.activities.events.DELETE",
+      "Desk.activities.DELETE"
+    ]
+  },
+  "connectors": [{
+    "connectionLinkName": "datev_connection",
+    "connectionName": "Datev Connection",
+    "serviceName": "datev",
+    "userAccess": true,
+    "isUserDefinedService": true,
+    "sharedBy": "20081917756"
+  },{
+    "connectionLinkName": "zoho_desk_connection",
+    "connectionName": "Zoho Desk Connection",
+    "serviceName": "zoho_desk",
+    "userAccess": false,
+    "isUserDefinedService": false,
+    "sharedBy": "20081917756",
+    "scope": [
+      "Desk.activities.CREATE",
+      "Desk.activities.UPDATE",
+      "Desk.activities.calls.UPDATE",
+      "Desk.activities.tasks.CREATE",
+      "Desk.activities.tasks.UPDATE",
+      "Desk.articles.CREATE",
+      "Desk.articles.READ",
+      "Desk.basic.ALL",
+      "Desk.basic.CREATE",
+      "Desk.basic.READ",
+      "Desk.basic.UPDATE",
+      "Desk.calls.READ",
+      "Desk.community.CREATE",
+      "Desk.community.READ",
+      "Desk.contacts.CREATE",
+      "Desk.contacts.READ",
+      "Desk.events.CREATE",
+      "Desk.events.READ",
+      "Desk.products.CREATE",
+      "Desk.products.READ",
+      "Desk.search.READ",
+      "Desk.settings.ALL",
+      "Desk.settings.CREATE",
+      "Desk.settings.DELETE",
+      "Desk.settings.READ",
+      "Desk.settings.UPDATE",
+      "Desk.tasks.CREATE",
+      "Desk.tasks.READ",
+      "Desk.tasks.UPDATE",
+      "Desk.tickets.CREATE",
+      "Desk.tickets.DELETE",
+      "Desk.tickets.READ",
+      "Desk.tickets.UPDATE"
+    ]
+  }],
+  "config": [],
+  "moduleSupport": false
+}

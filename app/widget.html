@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html data-theme="light">
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>Zoho Desk - Apps</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+  .card {
+  width: 290px;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  word-wrap: break-word;
+}
+
+    .wrapper :where(.title, li, li i, .details) {
+      display: flex;
+      align-items: center;
+    }
+
+    .title{
+      display: flex;
+    }
+    .title img {
+      max-width: 21px;
+      object-fit: contain;
+    }
+    .title h2 {
+      font-size: 15px;
+      max-width: max-content;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .title .helper {
+      font-size: 15px;
+      font-weight: 600;
+      margin-left: 120px;
+      cursor: help;
+    }
+
+    #tag-input {
+      margin-bottom: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    #tag-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #tag-list li {
+      display: inline-block;
+      background-color: #eee;
+      padding: 5px;
+      margin-right: 5px;
+      border-radius: 3px;
+    }
+
+    .content ul {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      padding: 4px;
+      margin: 12px 0;
+      border-radius: 5px;
+      border: 1px solid #cecece;
+      overflow: hidden;
+
+    }
+    .content ul li {
+      color: #050404;
+      font-size: 10px;
+      margin: 4px 4px;
+      list-style: none;
+      border-radius: 5px;
+      background: #f2f2f2;
+      padding: 3px;
+      border: 1px solid #e3e1e1;
+      word-wrap: break-word; /* Breaks long words to prevent horizontal overflow */
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .content ul input {
+      flex: 1;
+      padding: 2px;
+      border: none;
+      outline: none;
+      font-size: 10px;
+    }
+
+    .close_tag {
+      height: 15px;
+      width: 15px;
+      color: #f5e1e1;
+      margin-left: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      border-radius: 50%;
+      background: #f3b6b6;
+      justify-content: center;
+    }
+
+    /* Error Message */
+    .error-message {
+      color: #d63f35;
+      font-size: 10px;
+      padding: 5px;
+    }
+
+    /* latest added*/
+    .popupMessageContainer {
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 2px;
+      margin: 3px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading-bar-error {
+      height: 2px;
+      width: 0;
+      background: linear-gradient(to right, #ce2b15, #d63f35);
+      border-radius: 2px;
+    
+      transition: width 2s ease;
+      padding: 1px;
+    }
+
+    @keyframes load {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .loading-bar-error {
+      animation: load 3s ease-out forwards;
+    }
+  </style>
+</head>
+
+<body data-theme="light"> 
+  <div class="card bg-transparent" id="CardPage">
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <div class="title">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g opacity="0.5"> <path fill-rule="evenodd" clip-rule="evenodd" d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V10C2 6.22876 2 4.34315 3.17157 3.17157C4.34315 2 6.23869 2 10.0298 2C10.6358 2 11.1214 2 11.53 2.01666C11.5166 2.09659 11.5095 2.17813 11.5092 2.26057L11.5 5.09497C11.4999 6.19207 11.4998 7.16164 11.6049 7.94316C11.7188 8.79028 11.9803 9.63726 12.6716 10.3285C13.3628 11.0198 14.2098 11.2813 15.0569 11.3952C15.8385 11.5003 16.808 11.5002 17.9051 11.5001L18 11.5001H21.9574C22 12.0344 22 12.6901 22 13.5629V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22Z" fill="#1C274C"></path> </g> <path d="M6 13.75C5.58579 13.75 5.25 14.0858 5.25 14.5C5.25 14.9142 5.58579 15.25 6 15.25H14C14.4142 15.25 14.75 14.9142 14.75 14.5C14.75 14.0858 14.4142 13.75 14 13.75H6Z" fill="#1C274C"></path> <path d="M6 17.25C5.58579 17.25 5.25 17.5858 5.25 18C5.25 18.4142 5.58579 18.75 6 18.75H11.5C11.9142 18.75 12.25 18.4142 12.25 18C12.25 17.5858 11.9142 17.25 11.5 17.25H6Z" fill="#1C274C"></path> <path d="M11.5092 2.2601L11.5 5.0945C11.4999 6.1916 11.4998 7.16117 11.6049 7.94269C11.7188 8.78981 11.9803 9.6368 12.6716 10.3281C13.3629 11.0193 14.2098 11.2808 15.057 11.3947C15.8385 11.4998 16.808 11.4997 17.9051 11.4996L21.9574 11.4996C21.9698 11.6552 21.9786 11.821 21.9848 11.9995H22C22 11.732 22 11.5983 21.9901 11.4408C21.9335 10.5463 21.5617 9.52125 21.0315 8.79853C20.9382 8.6713 20.8743 8.59493 20.7467 8.44218C19.9542 7.49359 18.911 6.31193 18 5.49953C17.1892 4.77645 16.0787 3.98536 15.1101 3.3385C14.2781 2.78275 13.862 2.50487 13.2915 2.29834C13.1403 2.24359 12.9408 2.18311 12.7846 2.14466C12.4006 2.05013 12.0268 2.01725 11.5 2.00586L11.5092 2.2601Z" fill="#1C274C"></path> </g></svg>
+          <h3> Document File </h3>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <button class="btn btn-xs btn-circle btn-transparent tooltip tooltip-top " id="reload" data-tip="Reload">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle opacity="0.5" cx="12" cy="12" r="10" fill="#1C274C"></circle> <path d="M16.4017 6.28616C16.4017 5.98121 16.217 5.70662 15.9346 5.59158C15.6522 5.47653 15.3283 5.54393 15.1152 5.76208L14.3647 6.53037C12.244 5.55465 9.66551 5.95905 7.92796 7.7378C5.69068 10.0281 5.69068 13.7344 7.92796 16.0247C10.1748 18.3248 13.8252 18.3248 16.072 16.0247C17.3754 14.6904 17.9168 12.8779 17.7055 11.1507C17.6552 10.7396 17.2812 10.447 16.87 10.4973C16.4589 10.5476 16.1663 10.9217 16.2166 11.3328C16.3757 12.6335 15.9667 13.9859 14.999 14.9765C13.3407 16.6742 10.6593 16.6742 9.00097 14.9765C7.33301 13.269 7.33301 10.4935 9.00097 8.78596C10.1467 7.61303 11.7795 7.25143 13.225 7.69705L12.4635 8.47659C12.2527 8.69245 12.1917 9.01364 12.3088 9.29174C12.4259 9.56984 12.6983 9.75067 13 9.75067H15.6517C16.0659 9.75067 16.4017 9.41489 16.4017 9.00067V6.28616Z" fill="#1C274C"></path> </g></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <ul>
+        <input type="text" spellcheck="false" />
+      </ul>
+    </div>
+
+  <!-- Alert Message when it has error -->
+    <div id="alertDiv" role="alert" class="alert shadow-lg hidden">
+      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z" fill="#c21414"></path></g></svg>
+      <div>
+        <h6 class="font-bold text-red">Error Message</h6>
+        <div class="text-xs" id="errorMessage"></div>
+      </div>
+      <span class="loading loading-dots loading-sm text-error"></span>
+    </div>
+
+    <!-- loader when requesting file -->
+    <div id="loader" class="flex justify-center hidden">
+       <span class="loading loading-ring loading-xs"></span><span class="loading loading-ring loading-xs"></span><span class="loading loading-ring loading-xs"></span>
+    </div>
+
+    <div class="details">
+      <div class="flex justify-end item-center details">
+        <div class="tooltip tooltip-top p-1" data-tip="Reset">
+          <button class="btn btn-sm" id="remove" >
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M22.53 2.53033C22.8229 2.23743 22.8229 1.76256 22.53 1.46967C22.2371 1.17678 21.7622 1.17678 21.4693 1.46967L19.0674 3.87162C19.2692 4.01476 19.4617 4.17674 19.6425 4.35756C19.8232 4.53824 19.985 4.7306 20.1281 4.93221L22.53 2.53033Z" fill="#1C274C"></path> <path opacity="0.5" d="M2.44853 11.4112L3.18962 12.6294C5.22275 15.9716 8.02819 18.777 11.3703 20.8102L12.5886 21.5514C14.4872 22.5205 16.9425 21.8979 18.0027 19.8899C18.5037 18.941 18.9798 17.8776 19.2819 16.8209C19.7699 15.1139 19.9408 13.5611 19.9945 12.4895C20.0266 11.8492 20.0426 11.529 19.8902 11.1334C19.7378 10.7378 19.4738 10.4738 18.9456 9.9457L14.1203 5.12119C13.6288 4.62976 13.383 4.38404 13.0133 4.23177C12.6435 4.07951 12.3489 4.08069 11.7597 4.08306C10.6466 4.08753 8.97556 4.20429 7.17896 4.71789C6.12226 5.01998 5.05883 5.49608 4.11001 5.99706C2.10201 7.05728 1.47943 9.51262 2.44853 11.4112Z" fill="#1C274C"></path> <path d="M19.6426 4.35756C17.9067 2.62162 15.0922 2.62175 13.3562 4.35764L13.3184 4.39549C13.5498 4.55102 13.774 4.77521 14.1201 5.12119L18.9454 9.9457C19.2472 10.2475 19.4628 10.463 19.6205 10.6662L19.6427 10.644C21.3786 8.90807 21.3785 6.09349 19.6426 4.35756Z" fill="#1C274C"></path> </g></svg>
+            </button>
+          </div>
+          <div class="tooltip tooltip-top p-1" data-tip="Request File">
+            <button class="btn btn-sm" id="submit" >
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M16.245 7.76015L21.4166 2.58855L21.414 2.58595C20.2268 1.39869 17.9776 2.14842 13.4792 3.64788L8.32987 5.36432C4.69923 6.57453 2.88392 7.17964 2.36806 8.06698C1.87731 8.91112 1.87731 9.95369 2.36806 10.7978C2.88392 11.6852 4.69923 12.2903 8.32987 13.5005C8.77981 13.6505 9.28601 13.5434 9.62294 13.2096L15.1286 7.75495C15.4383 7.44808 15.9382 7.45041 16.245 7.76015Z" fill="#1C274C"></path> <path opacity="0.5" d="M18.6351 15.6695L20.3516 10.5201C21.85 6.02503 22.5997 3.77584 21.4161 2.58789L16.2445 7.75949C16.5514 8.06923 16.5491 8.56909 16.2393 8.87596L10.8226 14.2425C10.4512 14.6104 10.3337 15.1735 10.499 15.6695C11.7092 19.3001 12.3143 21.1154 13.2016 21.6313C14.0458 22.122 15.0883 22.122 15.9325 21.6313C16.8198 21.1154 17.4249 19.3001 18.6351 15.6695Z" fill="#1C274C"></path> </g></svg>
+              </button>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center p-2">
+    <div class="flex flex-col gap-4 w-52 " id="Pageloader">
+      <div class="skeleton h-32 w-full"></div>
+      <div class="skeleton h-4 w-28"></div>
+      <div class="skeleton h-4 w-full"></div>
+      <div class="skeleton h-4 w-full"></div>
+    </div>
+  </div>
+
+	<script src="https://js.zohostatic.com/support/developer_sdk/v1/js/ZohoDeskClientSDK.min.js"></script>
+
+	<script src="./igniter/app.js" charset="utf-8"></script>
+	<script src="./js/extension.js" charset="utf-8"></script>
+
+</body>
+
+</html>
